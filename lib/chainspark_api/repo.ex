@@ -1,0 +1,11 @@
+defmodule ChainsparkApi.Repo do
+  use Ecto.Repo,
+    otp_app: :chainspark_api,
+    adapter: Ecto.Adapters.Postgres
+
+  use Scrivener, page_size: 100
+
+  def init(_type, config) do
+    {:ok, Keyword.put(config, :url, System.get_env("DATABASE_URL"))}
+  end
+end
